@@ -1,8 +1,9 @@
 package vsa;
 
-import vsa.analyzable.Nop;
+import vsa.analyzable.Assignment;
 import vsa.analyzable.Procedure;
 import vsa.analyzable.State;
+import vsa.analyzable.Transition;
 
 public class main {
 
@@ -11,17 +12,13 @@ public class main {
         {
             State s0 = new State("s0");
             State s1 = new State("s1");
-            State s2 = new State("s2");
-            State s3 = new State("s3");
 
-            Nop n1 = new Nop(s0, s1);
-            Nop n2 = new Nop(s1, s2);
-            Nop n3 = new Nop(s2, s1);
-            Nop n4 = new Nop(s2, s3);
+            Transition n1 = new Assignment(s0, s1, "1");
+            Transition n2 = new Assignment(s0, s1, "2");
 
-            Procedure procedure = new Procedure(s0, s3);
+            Procedure procedure = new Procedure(s0, s1);
             ValueSetAnalysis vas = new ValueSetAnalysis();
-            vas.enter(procedure, 0);
+            vas.enter(procedure, new javafx.util.Pair<>(0, 0));
             vas.fullAnalysis();
         }
     }

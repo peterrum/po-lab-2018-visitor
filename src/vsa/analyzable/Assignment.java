@@ -4,8 +4,11 @@ import vsa.visitor.PropagatingVisitor;
 
 public class Assignment extends Transition {
 
-    public Assignment(State source, State dest) {
+    private final String offset;
+
+    public Assignment(State source, State dest, String offset) {
         super(source, dest);
+        this.offset = offset;
     }
 
     @Override
@@ -14,5 +17,12 @@ public class Assignment extends Transition {
             v.enter(dest, d);
         }
     }
+
+    @Override
+    public String toString() {
+        return offset;
+    }
+    
+    
 
 }
